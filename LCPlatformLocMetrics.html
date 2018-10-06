@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+  <title>Leader's Checklist- Anonymous Survey</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.5/popper.min.js"></script>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  
+  <script src="myScript.js"></script>
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:Classification msdt:dt="string">IC0 - Public - Information intended and approved for general public use and publication, or is already in the public domain.</mso:Classification>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+<body ng-app="myApp" ng-controller="todoCtrl">
+<style>
+h2{text-align:center;margin:0;
+  padding:0;}
+h4{text-align:center;margin:0;
+  padding:0;}
+thead{
+    background-color: #053582;
+    color: white;}
+	
+hr {
+  margin:0;
+  padding:0;
+}
+.banner{
+	background-color:  mintcream;
+    padding: 15px;
+}
+</style>
+
+<div class="container">
+<div>
+	<img src="header1.png" class="img-responsive" alt="Leader's Checklist" style="display: block;margin: 0 auto;height: 200px;"> 
+</div>
+<hr>
+<div class="banner">
+	<h2>Leader's Checklist- Survey response count</h2>
+</div>
+<hr style="margin-bottom:  20px;">
+
+<div class="row" style="display: none;">
+    <div class="col-sm-6" style="display: none;">
+		<label for="platform">Select Platform:</label>
+		  <select class="form-control" ng-model="selectOption" ng-change="decide()" id="platform" required>
+		    <option value="totalData" selected="selected">&nbsp;Overall</option>
+			<option value="accountingSol">Accounting Solutions</option>
+			<option value="CreditRisk">Credit Risk Solutions</option>
+			<option value="EPMandMarkets">EPM and Markets Solutions</option>
+			<option value="NonFinancial">Non-Financial Risk Solutions</option>
+			<option value="ReportingSolutions">Reporting Solutions</option>
+			<option value="TreasurySolutions">Treasury Solutions</option>
+			<option value="HRSolutions">HR Solutions</option>
+			<option value="ICBTransformation">ICB Transformation</option>
+			<option value="ResolutionsPlanning">Resolutions Planning and Brexit</option>
+			<option value="TechnologyTransformation">Technology Transformation</option>
+			<option value="TreasuryTransformation">Treasury Transformation</option>
+			<option value="PerformanceBusiness">Performance & Business Management</option>
+		  </select>
+	  </div>
+	  <div class="col-sm-6" style="display: none;">
+		  <label for="location">Select Location:</label>
+		  <select class="form-control" ng-model="selectOption2" ng-change="decide()" id="location" required>
+			<option value="totalData" selected="selected">	&nbsp;Overall</option>
+			<option value="London">London</option>
+			<option value="Edinburgh">Edinburgh</option>
+			<option value="Bangalore">Bangalore</option>
+			<option value="Chennai">Chennai</option>
+			<option value="Gurugram">Gurugram</option>
+		  </select>
+	  </div>
+   </div>
+<div class="table-responsive col-md-6">
+    <table class="table table-striped">
+		<thead>
+		  <tr>
+			<th > Platform </th>
+			<th > No of people responded</th>
+		  </tr>
+		</thead>
+		<tbody>
+		  <tr>
+			<th > Accounting Solutions </th>
+			<th > {{Accounting}}</th>
+		  </tr>
+		  <tr>
+			<th > Credit Risk Solutions</th>
+			<th > {{Credit}}</th>
+		  </tr>
+		  <tr>
+			<th > EPM and Markets Solutions</th>
+			<th > {{EPM}}</th>
+		  </tr>
+		  <tr>
+			<th > Non-Financial Risk Solutionss </th>
+			<th > {{Financial}}</th>
+		  </tr>
+		  <tr>
+			<th > Reporting Solutions </th>
+			<th > {{Reporting}}</th>
+		  </tr>
+		  <tr>
+			<th > Treasury Solutions </th>
+			<th > {{TreasurySol1}}</th>
+		  </tr>
+		  <tr>
+			<th > HR Solutions </th>
+			<th > {{HR}}</th>
+		  </tr>
+		  <tr>
+			<th > ICB Transformation </th>
+			<th > {{ICB}}</th>
+		  </tr>
+		  <tr>
+			<th > Resolutions Planning and Brexit </th>
+			<th > {{Resolutions}}</th>
+		  </tr>
+		  <tr>
+			<th > Technology Transformation </th>
+			<th > {{Technology}}</th>
+		  </tr>
+		  <tr>
+			<th > Treasury Transformation </th>
+			<th > {{Treasury}}</th>
+		  </tr>
+		  <tr>
+			<th > Performance & Business Management </th>
+			<th > {{Performance}}</th>
+		  </tr>
+		</tbody>  
+	</table>
+</div>
+<div class="table-responsive col-md-6">
+    <table class="table table-striped">
+		<thead>
+		  <tr>
+			<th > Location </th>
+			<th > No of people responded</th>
+		  </tr>
+		</thead>
+		<tbody>
+		  <tr>
+			<th > London </th>
+			<th > {{London}}</th>
+		  </tr>
+		  <tr>
+			<th > Edinburgh</th>
+			<th > {{Edinburgh}}</th>
+		  </tr>
+		  <tr>
+			<th > Bangalore</th>
+			<th > {{Bangalore}}</th>
+		  </tr>
+		  <tr>
+			<th > Chennai</th>
+			<th > {{Chennai}}</th>
+		  </tr>
+		  <tr>
+			<th > Gurugram </th>
+			<th > {{Gurugram}}</th>
+		  </tr>
+		  </tbody>
+	</table>
+</div>
+
+<br>
+
+
+</body>
+</html>

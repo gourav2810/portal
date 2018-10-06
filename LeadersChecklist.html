@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+  <title>Leader's Checklist- Anonymous Survey</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="lcScript.js"></script>
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:Classification msdt:dt="string">IC0 - Public - Information intended and approved for general public use and publication, or is already in the public domain.</mso:Classification>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+<body ng-app="myApp" ng-controller="todoCtrl">
+<style>
+th.headerss{
+    text-align:center;
+}
+th.first{
+	width: 60%;
+}
+th.second{
+	width: 20%;
+}
+
+td input { position:relative !important;;}
+button{
+  margin:auto;
+  display:block;
+}
+
+h2{text-align:center;margin:0;
+  padding:0;}
+hr {
+  margin:0;
+  padding:0;
+}
+.banner{
+	background-color: mintcream;
+    padding: 15px;
+}
+select {
+    background:  #fffaf7 !important;
+    color:#000;
+    text-shadow:0 1px 0 rgba(0, 0, 0, 0.4);
+}
+option:not(:checked) {
+    background-color: #fffaf7 ;
+}
+</style>
+<div id="myModal" class="modal fade" role="dialog" style="display:none">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Instructions</h4>
+      </div>
+      <div class="modal-body">
+        
+		 <table class="table">
+			<thead>
+			  <tr>
+				<th>Rating</th>
+				<th>Score</th>
+				<th>Description</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr>
+				<td>N/A</td>
+				<td>0</td>
+				<td>Not Applicable</td>
+			  </tr>
+			  <tr>
+				<td>Never</td>
+				<td>1</td>
+				<td>You never or rarely ever do this</td>
+			  </tr>
+			  <tr>
+				<td>Sometimes</td>
+				<td>2</td>
+				<td>You occasionally do this but very infrequently</td>
+			  </tr>
+			  <tr>
+				<td>Often</td>
+				<td>3</td>
+				<td>You do this about half the time it is expected</td>
+			  </tr>
+			  <tr>
+				<td>Mostly</td>
+				<td>4</td>
+				<td>You generally do do this but miss the occasional deadline</td>
+			  </tr>
+			  <tr>
+				<td>Always</td>
+				<td>5</td>
+				<td>You do this without fail as part of your normal routine</td>
+			  </tr>
+			</tbody>
+		 </table>
+		 <p style="text-align:center">Final cumulative score generated is the average of the responses</p>
+		 <p style="font-weight: bold;text-align:center">Please take a print(or save as PDF) of your response in the next screen to identify self-improvement actions.</p>
+		 <p style="text-align:center">Tips for print out: In Internet Explorer - Select CutePDF > Click ‘Print’ >  Save the file</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+$(window).on('load', function(){  $('#myModal').modal('show');});
+</script>
+
+<div class="container">
+<div>
+	<img src="header1.png" class="img-responsive" alt="Leader's Checklist" style="display: block;margin: 0 auto;height: 200px;"> 
+</div>
+<hr>
+<div class="banner">
+	<h2>Leader's Checklist- Anonymous Survey</h2>
+</div>
+<hr style="margin-bottom:  20px;">
+<form ng-submit="decide()" method="post">
+<div class="form-group">
+<div class="row">
+    <div class="col-sm-6">
+		<label for="platform">Select Platform:</label>
+		  <select class="form-control" id="platform" required>
+		    <option value="" disabled selected >Please select Platform</option>
+			<option value="accountingSol">Accounting Solutions</option>
+			<option value="CreditRisk">Credit Risk Solutions</option>
+			<option value="EPMandMarkets">EPM and Markets Solutions</option>
+			<option value="NonFinancial">Non-Financial Risk Solutions</option>
+			<option value="ReportingSolutions">Reporting Solutions</option>
+			<option value="TreasurySolutions">Treasury Solutions</option>
+			<option value="HRSolutions">HR Solutions</option>
+			<option value="ICBTransformation">ICB Transformation</option>
+			<option value="ResolutionsPlanning">Resolutions Planning and Brexit</option>
+			<option value="TechnologyTransformation">Technology Transformation</option>
+			<option value="TreasuryTransformation">Treasury Transformation</option>
+			<option value="PerformanceBusiness">Performance & Business Management</option>
+		  </select>
+	  </div>
+	  <div class="col-sm-6" >
+		  <label for="location">Select Location:</label>
+		  <select class="form-control" id="location" required>
+			<option value="" disabled selected >Please select location</option>
+			<option value="London">London</option>
+			<option value="Edinburgh">Edinburgh</option>
+			<option value="Bangalore">Bangalore</option>
+			<option value="Chennai">Chennai</option>
+			<option value="Gurugram">Gurugram</option>
+		  </select>
+	  </div>
+   </div>
+</div>
+<table class="table table-striped">
+  <col>
+  <colgroup span="1"></colgroup>
+  <colgroup span="2"></colgroup>
+  <tr style="background-color: #053582;color: white;">
+    <th rowspan="2" class="headerss"> Activity</th>
+	<th rowspan="2" class="headerss"> Frequency</th>
+	<th colspan="6" scope="colgroup" class="headerss">Rating</th>
+  </tr>
+  <tr style="background-color: #053582;color: white;">
+   <th scope="col">Never</th>
+    <th scope="col">Sometimes </th>
+    <th scope="col">Often</th>
+    <th scope="col">Mostly</th>
+	<th scope="col">Always</th>
+	<th scope="col">N/A</th>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Be visible, sharing business context, give advice & guidance</th>
+	<th class="second">Daily</th>
+    <td><label class="radio-inline"><input type="radio" ng-model="r1" name="r1" ng-value="1" value="1" required></label></td>
+    <td><label class="radio-inline"><input type="radio" ng-model="r1" name="r1" ng-value="2" value="2"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r1" name="r1" ng-value="3" value="3"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r1" name="r1" ng-value="4" value="4"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r1" name="r1" ng-value="5" value="5"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r1" name="r1" ng-value="0" value="0" disabled></label></td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Encourage sharing of information & conversations across teams & business areas</th>
+	<th class="second">Daily</th>
+    <td><label class="radio-inline"><input type="radio" ng-model="r2" ng-value="1" name="r2" value="1" required></label></td>
+    <td><label class="radio-inline"><input type="radio" ng-model="r2" ng-value="2" name="r2" value="2"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r2" ng-value="3" name="r2" value="3"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r2" ng-value="4" name="r2" value="4"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r2" ng-value="5" name="r2" value="5"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r2" ng-value="0" name="r2" value="0" disabled></label></td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Learn, adopt & embed DTL</th>
+    <th class="second">Daily</th>
+	<td><label class="radio-inline"><input type="radio" ng-model="r3" ng-value="1" name="r3" value="1" required></label></td>
+    <td><label class="radio-inline"><input type="radio" ng-model="r3" ng-value="2" name="r3" value="2"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r3" ng-value="3" name="r3" value="3"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r3" ng-value="4" name="r3" value="4"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r3" ng-value="5" name="r3" value="5"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r3" ng-value="0" name="r3" value="0" disabled></label></td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Use the DTL tools every day to support you & your team</th>
+    <th class="second">Daily</th>
+	<td><label class="radio-inline"><input type="radio" ng-model="r4" ng-value="1" name="r4" value="1" required></label></td>
+    <td><label class="radio-inline"><input type="radio" ng-model="r4" ng-value="2" name="r4" value="2"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r4" ng-value="3" name="r4" value="3"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r4" ng-value="4" name="r4" value="4"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r4" ng-value="5" name="r4" value="5"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r4" ng-value="0" name="r4" value="0" disabled></label></td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Hold effective MOP’s and debriefs </th>
+    <th class="second">Weekly</th>
+	<td><label class="radio-inline"><input type="radio" ng-model="r5" ng-value="1" name="r5" value="1" required></label></td>
+    <td><label class="radio-inline"><input type="radio" ng-model="r5" ng-value="2" name="r5" value="2"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r5" ng-value="3" name="r5" value="3"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r5" ng-value="4" name="r5" value="4"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r5" ng-value="5" name="r5" value="5"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r5" ng-value="0" name="r5" value="0" disabled></label></td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Ensure every team member has a Coach Skills Loop session</th>
+    <th class="second">minimum once per month Monthly</th>
+	<td><label class="radio-inline"><input type="radio" ng-model="r6" ng-value="1" name="r6" value="1" required></label></td>
+    <td><label class="radio-inline"><input type="radio" ng-model="r6" ng-value="2" name="r6" value="2"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r6" ng-value="3" name="r6" value="3"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r6" ng-value="4" name="r6" value="4"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r6" ng-value="5" name="r6" value="5"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r6" ng-value="0" name="r6" value="0" disabled></label></td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Run/Reinforce Service Excellence and or Sales Excellence Modules</th>
+    <th class="second">Monthly</th>
+	<td><label class="radio-inline"><input type="radio" ng-model="r7" ng-value="1"  name="r7" value="1" required></label></td>
+    <td><label class="radio-inline"><input type="radio" ng-model="r7" ng-value="2"  name="r7" value="2"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r7" ng-value="3"  name="r7" value="3"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r7" ng-value="4"  name="r7" value="4"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r7" ng-value="5"  name="r7" value="5"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r7" ng-value="0"  name="r7" value="0" disabled></label></td>
+  </tr><tr>
+    <th scope="row" class="first">Monthly 1:1</th>
+    <th class="second">Minimum monthly</th>
+    <td><label class="radio-inline"><input type="radio" ng-model="r8" ng-value="1" name="r8" value="1" required></label></td>
+    <td><label class="radio-inline"><input type="radio" ng-model="r8" ng-value="2" name="r8" value="2"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r8" ng-value="3" name="r8" value="3"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r8" ng-value="4" name="r8" value="4"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r8" ng-value="5" name="r8" value="5"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r8" ng-value="0" name="r8" value="0" disabled></label></td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Review “Manage My Team” on Peoplesoft regularly to check key manager activities</th>
+    <th class="second">Minimum monthly</th>
+    <td><label class="radio-inline"><input type="radio" ng-model="r9" ng-value="1" name="r9" value="1" required></label></td>
+    <td><label class="radio-inline"><input type="radio" ng-model="r9" ng-value="2" name="r9" value="2"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r9" ng-value="3" name="r9" value="3"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r9" ng-value="4" name="r9" value="4"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r9" ng-value="5" name="r9" value="5"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r9" ng-value="0" name="r9" value="0" disabled></label></td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Inspect what you expect (Ask Anyone)</th>
+    <th class="second">Minimum monthly</th>
+    <td><label class="radio-inline"><input type="radio" ng-model="r10" ng-value="1" name="r10" value="1" required></label></td>
+    <td><label class="radio-inline"><input type="radio" ng-model="r10" ng-value="2" name="r10" value="2"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r10" ng-value="3" name="r10" value="3"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r10" ng-value="4" name="r10" value="4"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r10" ng-value="5" name="r10" value="5"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r10" ng-value="0" name="r10" value="0" disabled></label></td>
+  </tr>
+<!--  <tr>
+    <th scope="row" class="first">Service Excellence modules</th>
+    <th class="second">Monthly complete by end of July</th>
+    <td><label class="radio-inline"><input type="radio" name="r11" value="1" required></label></td>
+    <td><label class="radio-inline"><input type="radio" name="r11" value="2"></label></td>
+	<td><label class="radio-inline"><input type="radio" name="r11" value="3"></label></td>
+	<td><label class="radio-inline"><input type="radio" name="r11" value="4"></label></td>
+	<td><label class="radio-inline"><input type="radio" name="r11" value="5"></label></td>
+	<td><label class="radio-inline"><input type="radio" name="r11" value="0" disabled></label></td>
+  </tr> -->
+  <tr>
+    <th scope="row" class="first">Regular discussion on your career aspirations using the GPTW check in tool</th>
+    <th class="second">Quarterly</th>
+    <td><label class="radio-inline"><input type="radio" ng-model="r12" ng-value="1" name="r12" value="1" required></label></td>
+    <td><label class="radio-inline"><input type="radio" ng-model="r12" ng-value="2" name="r12" value="2"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r12" ng-value="3" name="r12" value="3"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r12" ng-value="4" name="r12" value="4"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r12" ng-value="5" name="r12" value="5"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r12" ng-value="0" name="r12" value="0"></label></td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">PDP’s in place</th>
+    <th class="second">Minimum quarterly review</th>
+    <td><label class="radio-inline"><input type="radio" ng-model="r13" ng-value="1" name="r13" value="1" required></label></td>
+    <td><label class="radio-inline"><input type="radio" ng-model="r13" ng-value="2" name="r13" value="2"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r13" ng-value="3" name="r13" value="3"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r13" ng-value="4" name="r13" value="4"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r13" ng-value="5" name="r13" value="5"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r13" ng-value="0" name="r13" value="0"></label></td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Objectives in place for the year </th>
+    <th class="second">quarterly at a minimum</th>
+    <td><label class="radio-inline"><input type="radio" ng-model="r14" ng-value="1" name="r14" value="1" required></label></td>
+    <td><label class="radio-inline"><input type="radio" ng-model="r14" ng-value="2" name="r14" value="2"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r14" ng-value="3" name="r14" value="3"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r14" ng-value="4" name="r14" value="4"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r14" ng-value="5" name="r14" value="5"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r14" ng-value="0" name="r14" value="0"></label></td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Mid year reviews</th>
+    <th class="second">By end of June</th>
+    <td><label class="radio-inline"><input type="radio" ng-model="r15" ng-value="1" name="r15" value="1" required></label></td>
+    <td><label class="radio-inline"><input type="radio" ng-model="r15" ng-value="2" name="r15" value="2"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r15" ng-value="3" name="r15" value="3"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r15" ng-value="4" name="r15" value="4"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r15" ng-value="5" name="r15" value="5"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r15" ng-value="0" name="r15" value="0"></label></td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">End of year reviews</th>
+    <th class="second">By early December</th>
+    <td><label class="radio-inline"><input type="radio" ng-model="r16" ng-value="1" name="r16" value="1" required></label></td>
+    <td><label class="radio-inline"><input type="radio" ng-model="r16" ng-value="2" name="r16" value="2"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r16" ng-value="3" name="r16" value="3"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r16" ng-value="4" name="r16" value="4"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r16" ng-value="5" name="r16" value="5"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r16" ng-value="0" name="r16" value="0"></label></td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Run unconscious bias sessions with your people</th>
+    <th class="second">Minimum annually</th>
+    <td><label class="radio-inline"><input type="radio" ng-model="r17" ng-value="1" name="r17" value="1" required></label></td>
+    <td><label class="radio-inline"><input type="radio" ng-model="r17" ng-value="2" name="r17" value="2"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r17" ng-value="3" name="r17" value="3"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r17" ng-value="4" name="r17" value="4"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r17" ng-value="5" name="r17" value="5"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r17" ng-value="0" name="r17" value="0" disabled></label></td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Encourage your people to take part in bank wide & team initiatives i.e. Money Sense, Community activities & Emp. Led networks</th>
+    <th class="second">Continuous throughout</th>
+    <td><label class="radio-inline"><input type="radio" ng-model="r18" ng-value="1" name="r18" value="1" required></label></td>
+    <td><label class="radio-inline"><input type="radio" ng-model="r18" ng-value="2" name="r18" value="2"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r18" ng-value="3" name="r18" value="3"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r18" ng-value="4" name="r18" value="4"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r18" ng-value="5" name="r18" value="5"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r18" ng-value="0" name="r18" value="0" disabled></label></td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Support your people to spend time weekly on wellbeing or mindfulness activities as well as quality time on their own learning review during monthly 1:1</th>
+    <th class="second">Continuous</th>
+    <td><label class="radio-inline"><input type="radio" ng-model="r19" ng-value="1" name="r19" value="1" required></label></td>
+    <td><label class="radio-inline"><input type="radio" ng-model="r19" ng-value="2" name="r19" value="2"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r19" ng-value="3" name="r19" value="3"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r19" ng-value="4" name="r19" value="4"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r19" ng-value="5" name="r19" value="5"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r19" ng-value="0" name="r19" value="0" disabled></label></td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Successes are recognised using LOV awards and long service is celebrated </th>
+    <th class="second">Continuous</th>
+    <td><label class="radio-inline"><input type="radio" ng-model="r20" ng-value="1" name="r20" value="1" required></label></td>
+    <td><label class="radio-inline"><input type="radio" ng-model="r20" ng-value="2" name="r20" value="2"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r20" ng-value="3" name="r20" value="3"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r20" ng-value="4" name="r20" value="4"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r20" ng-value="5" name="r20" value="5"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r20" ng-value="0" name="r20" value="0" disabled></label></td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Make effective use of available technology, such as workplace, skillport, performance excellence app</th>
+    <th class="second">Continuous</th>
+    <td><label class="radio-inline"><input type="radio" ng-model="r21" ng-value="1" name="r21" value="1" required></label></td>
+    <td><label class="radio-inline"><input type="radio" ng-model="r21" ng-value="2" name="r21" value="2"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r21" ng-value="3" name="r21" value="3"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r21" ng-value="4" name="r21" value="4"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r21" ng-value="5" name="r21" value="5"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r21" ng-value="0" name="r21" value="0" disabled></label></td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Share & celebrate great performance</th>
+    <th class="second">Continuous</th>
+    <td><label class="radio-inline"><input type="radio" ng-model="r22" ng-value="1" name="r22" value="1" required></label></td>
+    <td><label class="radio-inline"><input type="radio" ng-model="r22" ng-value="2" name="r22" value="2"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r22" ng-value="3" name="r22" value="3"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r22" ng-value="4" name="r22" value="4"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r22" ng-value="5" name="r22" value="5"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r22" ng-value="0" name="r22" value="0" disabled></label></td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Ask your people for feedback on your perf. – via 360 feedback and/or upward feedback</th>
+    <th class="second">Continuous; SM level minimum annually</th>
+    <td><label class="radio-inline"><input type="radio" ng-model="r23" ng-value="1" name="r23" value="1" required></label></td>
+    <td><label class="radio-inline"><input type="radio" ng-model="r23" ng-value="2" name="r23" value="2"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r23" ng-value="3" name="r23" value="3"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r23" ng-value="4" name="r23" value="4"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r23" ng-value="5" name="r23" value="5"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r23" ng-value="0" name="r23" value="0" disabled></label></td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Make sure you & your people have completed GPL/Training/Service Excellence modules within published timelines
+</th>
+    <th class="second">Continuous minimum review quarterly
+</th>
+    <td><label class="radio-inline"><input type="radio" ng-model="r24" ng-value="1" name="r24" value="1" required></label></td>
+    <td><label class="radio-inline"><input type="radio" ng-model="r24" ng-value="2" name="r24" value="2"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r24" ng-value="3" name="r24" value="3"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r24" ng-value="4" name="r24" value="4"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r24" ng-value="5" name="r24" value="5"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r24" ng-value="0" name="r24" value="0" disabled></label></td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Hold 3 skip level discussions</th>
+    <th class="second">Monthly</th>
+    <td><label class="radio-inline"><input type="radio" ng-model="r25" ng-value="1" name="r25" value="1" required></label></td>
+    <td><label class="radio-inline"><input type="radio" ng-model="r25" ng-value="2" name="r25" value="2"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r25" ng-value="3" name="r25" value="3"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r25" ng-value="4" name="r25" value="4"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r25" ng-value="5" name="r25" value="5"></label></td>
+	<td><label class="radio-inline"><input type="radio" ng-model="r25" ng-value="0" name="r25" value="0"></label></td>
+  </tr>
+  
+</table>
+<br>
+<div>
+<button type="submit" class="btn btn-default" style="display:block;">{{Submit}}</button>
+
+<div id="resultModal" class="modal fade" role="dialog" style="display:none">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Result</h4>
+      </div>
+      <div class="modal-body">
+        <p id="resultInModal" style="text-align:center;"></p>
+		<p style="text-align:center">Tips for print out: In Internet Explorer - Select CutePDF > Click ‘Print’ >  Save the file</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" id="resultModalClose" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+	<script type="text/javascript">
+		$('#resultModal').on('hidden.bs.modal', function () {
+			console.log('Fired when hide event has finished!');
+			window.print();
+		});
+	</script>
+<a href="" data-toggle="modal" data-target="#resultModal" id="myModalShower" style="display:none"></a>
+<p style="text-align:center;font-weight: bold">(We assure you user details are not tracked it is only for self assesment)</p>
+<div class="alert alert-success" id="resDIV" style="display:none">
+    <p id="result" style="text-align:center;"></p>
+</div>
+</div>
+</form>
+<br>
+</div>
+
+
+</body>
+</html>

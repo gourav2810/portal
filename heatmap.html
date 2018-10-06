@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+  <title>Leader's Checklist- Anonymous Survey</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="myScript.js"></script>
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:Classification msdt:dt="string">IC0 - Public - Information intended and approved for general public use and publication, or is already in the public domain.</mso:Classification>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+<body ng-app="myApp" ng-controller="todoCtrl">
+<style>
+th.headerss{text-align:center;}
+th.first{width: 60%;}
+th.second{width: 20%;}
+td input { position:relative !important;;}
+button{margin:auto;display:block;}
+h2{text-align:center;margin:0;padding:0;}
+h4{text-align:center;margin:0;padding:0;}
+hr {margin:0;padding:0;}
+.banner{background-color:  mintcream;padding: 15px;}
+select {
+    background:  #fffaf7 !important;
+    color:#000;
+    text-shadow:0 1px 0 rgba(0, 0, 0, 0.4);
+}
+option:not(:checked) {
+    background-color: #fffaf7 ;
+}
+tr td:nth-child(3),
+tr td:nth-child(4) {
+  background: #ff6d6d;
+}
+tr td:nth-child(5) {
+  background: #fcdd79;
+}
+tr td:nth-child(6),
+tr td:nth-child(7) {
+  background: #cff7af;
+}
+.red{
+	background: #ff6d6d;
+}
+.amber{
+	background: #fcdd79;
+}
+.green{
+	background: #cff7af;
+}
+.default{
+
+}
+</style>
+
+<div class="container">
+<div>
+	<img src="header1.png" class="img-responsive" alt="Leader's Checklist" style="display: block;margin: 0 auto;height: 200px;"> 
+</div>
+<hr>
+<div class="banner">
+	<h2>Leader's Checklist - Survey HeatMap</h2>
+	<h4></h4>
+</div>
+<hr style="margin-bottom:  20px;">
+<div class="form-group" >
+<div class="row">
+    <div class="col-sm-6">
+		<label for="platform">Select Platform:</label>
+		  <select class="form-control" ng-model="selectOption" ng-change="decide()" id="platform" required>
+		    <option value="totalData" selected="selected">&nbsp;Overall</option>
+			<option value="accountingSol">Accounting Solutions</option>
+			<option value="CreditRisk">Credit Risk Solutions</option>
+			<option value="EPMandMarkets">EPM and Markets Solutions</option>
+			<option value="NonFinancial">Non-Financial Risk Solutions</option>
+			<option value="ReportingSolutions">Reporting Solutions</option>
+			<option value="TreasurySolutions">Treasury Solutions</option>
+			<option value="HRSolutions">HR Solutions</option>
+			<option value="ICBTransformation">ICB Transformation</option>
+			<option value="ResolutionsPlanning">Resolutions Planning and Brexit</option>
+			<option value="TechnologyTransformation">Technology Transformation</option>
+			<option value="TreasuryTransformation">Treasury Transformation</option>
+			<option value="PerformanceBusiness">Performance & Business Management</option>
+		  </select>
+	  </div>
+	  <div class="col-sm-6" >
+		  <label for="location">Select Location:</label>
+		  <select class="form-control" ng-model="selectOption2" ng-change="decide()" id="location" required>
+			<option value="totalData" selected="selected">	&nbsp;Overall</option>
+			<option value="London">London</option>
+			<option value="Edinburgh">Edinburgh</option>
+			<option value="Bangalore">Bangalore</option>
+			<option value="Chennai">Chennai</option>
+			<option value="Gurugram">Gurugram</option>
+		  </select>
+	  </div>
+   </div>
+</div>
+<table class="table table-striped">
+  <col>
+  <colgroup span="1"></colgroup>
+  <colgroup span="2"></colgroup>
+  <tr style="background-color: #053582;color: white;">
+    <th rowspan="2" class="headerss"> Activity</th>
+	<th rowspan="2" class="headerss"> Frequency</th>
+	<th colspan="7" scope="colgroup" class="headerss">Rating</th>
+  </tr>
+  <tr style="background-color: #053582;color: white;">
+	<th scope="col">Never</th>
+    <th scope="col">Sometimes </th>
+    <th scope="col">Often</th>
+    <th scope="col">Mostly</th>
+	<th scope="col">Always</th>
+	<th scope="col">N/A</th>
+	<th scope="col">Avg</th>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Be visible, sharing business context, give advice & guidance</th>
+	<th class="second">Daily</th>
+    <td>{{r1Never}}</td>
+	<td>{{r1Sometimes}}</td>
+	<td>{{r1Often}}</td>
+	<td>{{r1Mostly}}</td>
+	<td>{{r1Always}}</td>
+	<td>{{r1NA}}</td>
+	<td ng-class="ragClassFunc(r1Avg)">{{r1Avg}}</td>
+    
+  </tr>
+  <tr>
+    <th scope="row" class="first">Encourage sharing of information & conversations across teams & business areas</th>
+	<th class="second">Daily</th>
+    <td>{{r2Never}}</td>
+	<td>{{r2Sometimes}}</td>
+	<td>{{r2Often}}</td>
+	<td>{{r2Mostly}}</td>
+	<td>{{r2Always}}</td>
+	<td>{{r2NA}}</td>
+	<td ng-class="ragClassFunc(r2Avg)">{{r2Avg}}</td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Learn, adopt & embed DTL</th>
+    <th class="second">Daily</th>
+	<td>{{r3Never}}</td>
+	<td>{{r3Sometimes}}</td>
+	<td>{{r3Often}}</td>
+	<td>{{r3Mostly}}</td>
+	<td>{{r3Always}}</td>
+	<td>{{r3NA}}</td>
+	<td ng-class="ragClassFunc(r3Avg)">{{r3Avg}}</td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Use the DTL tools every day to support you & your team</th>
+    <th class="second">Daily</th>
+	<td>{{r4Never}}</td>
+	<td>{{r4Sometimes}}</td>
+	<td>{{r4Often}}</td>
+	<td>{{r4Mostly}}</td>
+	<td>{{r4Always}}</td>
+	<td>{{r4NA}}</td>
+	<td ng-class="ragClassFunc(r4Avg)">{{r4Avg}}</td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Hold effective MOP’s and debriefs </th>
+    <th class="second">Weekly</th>
+	<td>{{r5Never}}</td>
+	<td>{{r5Sometimes}}</td>
+	<td>{{r5Often}}</td>
+	<td>{{r5Mostly}}</td>
+	<td>{{r5Always}}</td>
+	<td>{{r5NA}}</td>
+	<td ng-class="ragClassFunc(r5Avg)">{{r5Avg}}</td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Ensure every team member has a Coach Skills Loop session</th>
+    <th class="second">minimum once per month Monthly</th>
+	<td>{{r6Never}}</td>
+	<td>{{r6Sometimes}}</td>
+	<td>{{r6Often}}</td>
+	<td>{{r6Mostly}}</td>
+	<td>{{r6Always}}</td>
+	<td>{{r6NA}}</td>
+	<td ng-class="ragClassFunc(r6Avg)">{{r6Avg}}</td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Run/Reinforce Service Excellence and or Sales Excellence Modules</th>
+    <th class="second">Monthly</th>
+	<td>{{r7Never}}</td>
+	<td>{{r7Sometimes}}</td>
+	<td>{{r7Often}}</td>
+	<td>{{r7Mostly}}</td>
+	<td>{{r7Always}}</td>
+	<td>{{r7NA}}</td>
+	<td ng-class="ragClassFunc(r7Avg)">{{r7Avg}}</td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Monthly 1:1</th>
+    <th class="second">Minimum monthly</th>
+    <td>{{r8Never}}</td>
+	<td>{{r8Sometimes}}</td>
+	<td>{{r8Often}}</td>
+	<td>{{r8Mostly}}</td>
+	<td>{{r8Always}}</td>
+	<td>{{r8NA}}</td>
+	<td ng-class="ragClassFunc(r8Avg)">{{r8Avg}}</td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Review “Manage My Team” on Peoplesoft regularly to check key manager activities</th>
+    <th class="second">Minimum monthly</th>
+    <td>{{r9Never}}</td>
+	<td>{{r9Sometimes}}</td>
+	<td>{{r9Often}}</td>
+	<td>{{r9Mostly}}</td>
+	<td>{{r9Always}}</td>
+	<td>{{r9NA}}</td>
+	<td ng-class="ragClassFunc(r9Avg)">{{r9Avg}}</td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Inspect what you expect (Ask Anyone)</th>
+    <th class="second">Minimum monthly</th>
+    <td>{{r10Never}}</td>
+	<td>{{r10Sometimes}}</td>
+	<td>{{r10Often}}</td>
+	<td>{{r10Mostly}}</td>
+	<td>{{r10Always}}</td>
+	<td>{{r10NA}}</td>
+	<td ng-class="ragClassFunc(r10Avg)">{{r10Avg}}</td>
+  </tr>
+<!--  <tr>
+    <th scope="row" class="first">Service Excellence modules</th>
+    <th class="second">Monthly complete by end of July</th>
+    <td>{{r11Never}}</td>
+	<td>{{r11Sometimes}}</td>
+	<td>{{r11Often}}</td>
+	<td>{{r11Mostly}}</td>
+	<td>{{r11Always}}</td>
+	<td>{{r11NA}}</td>
+	<td ng-class="ragClassFunc(r11Avg)">{{r11Avg}}</td>
+  </tr> -->
+  <tr>
+    <th scope="row" class="first">Regular discussion on your career aspirations using the GPTW check in tool</th>
+    <th class="second">Quarterly</th>
+    <td>{{r12Never}}</td>
+	<td>{{r12Sometimes}}</td>
+	<td>{{r12Often}}</td>
+	<td>{{r12Mostly}}</td>
+	<td>{{r12Always}}</td>
+	<td>{{r12NA}}</td>
+	<td ng-class="ragClassFunc(r12Avg)">{{r12Avg}}</td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">PDP’s in place</th>
+    <th class="second">Minimum quarterly review</th>
+    <td>{{r13Never}}</td>
+	<td>{{r13Sometimes}}</td>
+	<td>{{r13Often}}</td>
+	<td>{{r13Mostly}}</td>
+	<td>{{r13Always}}</td>
+	<td>{{r13NA}}</td>
+	<td ng-class="ragClassFunc(r13Avg)">{{r13Avg}}</td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Objectives in place for the year </th>
+    <th class="second">quarterly at a minimum</th>
+    <td>{{r14Never}}</td>
+	<td>{{r14Sometimes}}</td>
+	<td>{{r14Often}}</td>
+	<td>{{r14Mostly}}</td>
+	<td>{{r14Always}}</td>
+	<td>{{r14NA}}</td>
+	<td ng-class="ragClassFunc(r14Avg)">{{r14Avg}}</td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Mid year reviews</th>
+    <th class="second">By end of June</th>
+    <td>{{r15Never}}</td>
+	<td>{{r15Sometimes}}</td>
+	<td>{{r15Often}}</td>
+	<td>{{r15Mostly}}</td>
+	<td>{{r15Always}}</td>
+	<td>{{r15NA}}</td>
+	<td ng-class="ragClassFunc(r15Avg)">{{r15Avg}}</td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">End of year reviews</th>
+    <th class="second">By early December</th>
+    <td>{{r16Never}}</td>
+	<td>{{r16Sometimes}}</td>
+	<td>{{r16Often}}</td>
+	<td>{{r16Mostly}}</td>
+	<td>{{r16Always}}</td>
+	<td>{{r16NA}}</td>
+	<td ng-class="ragClassFunc(r16Avg)">{{r16Avg}}</td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Run unconscious bias sessions with your people</th>
+    <th class="second">Minimum annually</th>
+    <td>{{r17Never}}</td>
+	<td>{{r17Sometimes}}</td>
+	<td>{{r17Often}}</td>
+	<td>{{r17Mostly}}</td>
+	<td>{{r17Always}}</td>
+	<td>{{r17NA}}</td>
+	<td ng-class="ragClassFunc(r17Avg)">{{r17Avg}}</td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Encourage your people to take part in bank wide & team initiatives i.e. Money Sense, Community activities & Emp. Led networks</th>
+    <th class="second">Continuous throughout</th>
+    <td>{{r18Never}}</td>
+	<td>{{r18Sometimes}}</td>
+	<td>{{r18Often}}</td>
+	<td>{{r18Mostly}}</td>
+	<td>{{r18Always}}</td>
+	<td>{{r18NA}}</td>
+	<td ng-class="ragClassFunc(r18Avg)">{{r18Avg}}</td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Support your people to spend time weekly on wellbeing or mindfulness activities as well as quality time on their own learning review during monthly 1:1</th>
+    <th class="second">Continuous</th>
+    <td>{{r19Never}}</td>
+	<td>{{r19Sometimes}}</td>
+	<td>{{r19Often}}</td>
+	<td>{{r19Mostly}}</td>
+	<td>{{r19Always}}</td>
+	<td>{{r19NA}}</td>
+	<td ng-class="ragClassFunc(r19Avg)">{{r19Avg}}</td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Successes are recognised using LOV awards and long service is celebrated </th>
+    <th class="second">Continuous</th>
+    <td>{{r20Never}}</td>
+	<td>{{r20Sometimes}}</td>
+	<td>{{r20Often}}</td>
+	<td>{{r20Mostly}}</td>
+	<td>{{r20Always}}</td>
+	<td>{{r20NA}}</td>
+	<td ng-class="ragClassFunc(r20Avg)">{{r20Avg}}</td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Make effective use of available technology, such as workplace, skillport, performance excellence app</th>
+    <th class="second">Continuous</th>
+    <td>{{r21Never}}</td>
+	<td>{{r21Sometimes}}</td>
+	<td>{{r21Often}}</td>
+	<td>{{r21Mostly}}</td>
+	<td>{{r21Always}}</td>
+	<td>{{r21NA}}</td>
+	<td ng-class="ragClassFunc(r21Avg)">{{r21Avg}}</td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Share & celebrate great performance</th>
+    <th class="second">Continuous</th>
+    <td>{{r22Never}}</td>
+	<td>{{r22Sometimes}}</td>
+	<td>{{r22Often}}</td>
+	<td>{{r22Mostly}}</td>
+	<td>{{r22Always}}</td>
+	<td>{{r22NA}}</td>
+	<td ng-class="ragClassFunc(r22Avg)">{{r22Avg}}</td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Ask your people for feedback on your perf. – via 360 feedback and/or upward feedback</th>
+    <th class="second">Continuous; SM level minimum annually</th>
+    <td>{{r23Never}}</td>
+	<td>{{r23Sometimes}}</td>
+	<td>{{r23Often}}</td>
+	<td>{{r23Mostly}}</td>
+	<td>{{r23Always}}</td>
+	<td>{{r23NA}}</td>
+	<td ng-class="ragClassFunc(r23Avg)">{{r23Avg}}</td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Make sure you & your people have completed GPL/Training/Service Excellence modules within published timelines
+</th>
+    <th class="second">Continuous minimum review quarterly
+</th>
+    <td>{{r24Never}}</td>
+	<td>{{r24Sometimes}}</td>
+	<td>{{r24Often}}</td>
+	<td>{{r24Mostly}}</td>
+	<td>{{r24Always}}</td>
+	<td>{{r24NA}}</td>
+	<td ng-class="ragClassFunc(r24Avg)">{{r24Avg}}</td>
+  </tr>
+  <tr>
+    <th scope="row" class="first">Hold 3 skip level discussions</th>
+    <th class="second">Monthly</th>
+    <td>{{r25Never}}</td>
+	<td>{{r25Sometimes}}</td>
+	<td>{{r25Often}}</td>
+	<td>{{r25Mostly}}</td>
+	<td>{{r25Always}}</td>
+	<td>{{r25NA}}</td>
+	<td ng-class="ragClassFunc(r25Avg)">{{r25Avg}}</td>
+  </tr>
+  
+</table>
+<br>
+</div>
+
+
+</body>
+</html>
